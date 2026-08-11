@@ -1,0 +1,19 @@
+{
+  "name": "telemetry-gateway",
+  "version": "1.0.0",
+  "description": "Node Infrastructure Telemetry Monitoring & Gateway Microservice",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "worker": "node src/scheduler.js",
+    "telemetry:run": "node src/scheduler.js --once",
+    "db:seed:mock": "node src/seed.js",
+    "diagnostic": "node src/antigravity_preflight.js"
+  },
+  "dependencies": {
+    "axios": "^1.7.2",
+    "dotenv": "^16.4.5",
+    "node-cron": "^3.0.3",
+    "sqlite3": "^5.1.7"
+  }
+}
