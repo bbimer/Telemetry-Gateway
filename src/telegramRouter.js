@@ -21,14 +21,16 @@ async function dispatchTelemetryReport(nodeSummaries) {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
-  const isPlaceholderToken = !token || 
+  const isPlaceholder = !token || 
     !chatId || 
     token.includes('your_telegram_bot_token') || 
     token.includes('XXXXXXXXXXXXXXXXX') ||
+    chatId.includes('100234567890') ||
+    chatId.includes('your_telegram_chat_id') ||
     token.length < 20;
 
-  if (isPlaceholderToken) {
-    console.log('[Telegram Router] Mock payload dispatch (Telegram token is placeholder or not set).');
+  if (isPlaceholder) {
+    console.log('[Telegram Router] Mock payload dispatch (Telegram token or chat ID is placeholder).');
     console.log(generateReportMarkdown(nodeSummaries));
     return true;
   }
@@ -58,14 +60,16 @@ async function dispatchTestPayload() {
   const token = process.env.TELEGRAM_BOT_TOKEN;
   const chatId = process.env.TELEGRAM_CHAT_ID;
 
-  const isPlaceholderToken = !token || 
+  const isPlaceholder = !token || 
     !chatId || 
     token.includes('your_telegram_bot_token') || 
     token.includes('XXXXXXXXXXXXXXXXX') ||
+    chatId.includes('100234567890') ||
+    chatId.includes('your_telegram_chat_id') ||
     token.length < 20;
 
-  if (isPlaceholderToken) {
-    // In mock diagnostic mode without real bot token, simulate clean dispatch
+  if (isPlaceholder) {
+    // In mock diagnostic mode without real chat ID, simulate clean dispatch
     return { ok: true, simulated: true };
   }
 
